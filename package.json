@@ -13,6 +13,6 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+"
+    "url": "git+https://github.com/night-slayer18/fake-js.git"
   }
 }
