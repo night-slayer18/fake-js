@@ -1,6 +1,6 @@
 {
   "name": "@night_slayer/fake-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This package contains fake data for development purposes. Which includes fake names, emails, phone numbers, addresses, etc.",
   "type": "module",
   "main": "index.js",
