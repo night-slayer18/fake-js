@@ -26,7 +26,7 @@
     "fake addresses"
    ],   
   "author": "Samanuai A",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/night-slayer18/fake-js.git"
