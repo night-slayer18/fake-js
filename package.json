@@ -1,6 +1,6 @@
 {
   "name": "@night_slayer/fake-js",
-  "version": "1.0.2",
+  "version": "1.0.2.1",
   "description": "This package contains fake data for development purposes. Which includes fake names, emails, phone numbers, addresses, etc.",
   "type": "module",
   "main": "index.js",
@@ -8,7 +8,23 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "fake data",
+    "mock data",
+    "development",
+    "front-end",
+    "user data",
+    "prototyping",
+    "testing",
+    "realistic data",
+    "fictional data",
+    "javascript",
+    "npm package",
+    "fake names",
+    "fake emails",
+    "fake phone numbers",
+    "fake addresses"
+   ],   
   "author": "Samanuai A",
   "license": "ISC",
   "repository": {
