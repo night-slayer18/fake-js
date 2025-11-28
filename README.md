@@ -6,9 +6,14 @@ A lightweight, enterprise-grade fake data generator for development and testing.
 
 - 🔒 **Type Safe**: Written in TypeScript with full type definitions.
 - 🧠 **Smart Consistency**: Emails match names (e.g., "John Doe" -> "john.doe@example.com").
+- 📅 **Dynamic Dates**: Generates realistic past, future, and birth dates.
 - 🎲 **Deterministic**: Support for seeded randomness for reproducible tests.
+- 🌍 **Localization**: Support for 10+ locales (en, es, fr, de, it, pt, ru, ja, zh, hi).
+- 🛠️ **CLI Tool**: Generate data directly from the command line.
+- 🔌 **Extensible**: Add custom data generators easily.
 - 📦 **Tree Shakeable**: Granular access to data generators.
 - ⚡ **Fast**: Lightweight and efficient.
+- 📚 **Rich Data**: Over 100+ items per category for each locale.
 
 ## Installation
 
@@ -34,7 +39,8 @@ console.log(user);
 {
   id: 1,
   name: 'John Doe',
-  email: 'john.doe@example.com', // Matches name!
+  email: 'john.doe@example.com',
+  birthdate: 1990-05-15T00:00:00.000Z,
   ...
 }
 */
@@ -53,19 +59,63 @@ const faker = new Faker({ seed: 123 });
 console.log(faker.person.name()); // Always the same name for seed 123
 ```
 
+### Localization
+
+Initialize `Faker` with a `locale` to generate localized data.
+
+```typescript
+// Generate Spanish data
+const faker = new Faker({ locale: 'es' });
+
+console.log(faker.person.name()); // "Juan Perez"
+console.log(faker.location.city()); // "Madrid"
+```
+
+Supported locales: `en`, `es`, `fr`, `de`, `it`, `pt`, `ru`, `ja`, `zh`, `hi`.
+
 ### Granular Access & Consistency
 
-You can access specific data generators directly. Pass a name to `email()` to generate a consistent email address.
+You can access specific data generators directly.
 
 ```typescript
 const faker = new Faker();
 
-const name = faker.person.name(); // "John Doe"
+// Smart Consistency
+const name = faker.person.name();
 const email = faker.internet.email(name); // "john.doe@example.com"
+
+// Dynamic Dates
+const past = faker.date.past();   // Random date in past year
+const future = faker.date.future(); // Random date in future year
+const birthdate = faker.person.birthdate({ min: 18, max: 65 }); // Age 18-65
 
 console.log(faker.phone.number());
 console.log(faker.location.city());
-console.log(faker.work.jobTitle());
+```
+
+### Extensibility
+
+Add your own custom data generators.
+
+```typescript
+const faker = new Faker();
+
+faker.addGenerator('customId', () => `ID-${Math.random()}`);
+
+const user = faker.createUser();
+console.log(user.customId); // "ID-0.123..."
+```
+
+### CLI Usage
+
+Generate data directly from your terminal.
+
+```bash
+# Generate 5 users with French locale
+npx fake-js --count 5 --locale fr
+
+# Save to file
+npx fake-js --count 100 > users.json
 ```
 
 ## API Reference
@@ -73,6 +123,7 @@ console.log(faker.work.jobTitle());
 ### `new Faker(options?)`
 
 - `options.seed` (optional): A number or string to seed the random number generator.
+- `options.locale` (optional): The locale to use (default: 'en').
 
 ### Methods
 
@@ -81,8 +132,9 @@ console.log(faker.work.jobTitle());
 
 ### Modules
 
-- `faker.person`: `name()`, `birthdate()`, `educationLevel()`, `hobby()`
-- `faker.internet`: `email(name?)` - Generates an email, optionally matching the provided name.
+- `faker.person`: `name()`, `birthdate(options?)`, `educationLevel()`, `hobby()`
+- `faker.internet`: `email(name?)`
+- `faker.date`: `past(years?)`, `future(years?)`, `between(from, to)`
 - `faker.phone`: `number()`
 - `faker.location`: `city()`, `address()`
 - `faker.work`: `jobTitle()`, `companyName()`, `skill()`, `skills(count)`
