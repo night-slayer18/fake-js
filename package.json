@@ -3,10 +3,18 @@
   "version": "1.0.3",
   "description": "This package contains fake data for development purposes. Which includes fake names, emails, phone numbers, addresses, etc.",
   "type": "module",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "vitest",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "fake data",
@@ -24,11 +32,27 @@
     "fake emails",
     "fake phone numbers",
     "fake addresses"
-   ],   
+  ],
   "author": "Samanuai A",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/night-slayer18/fake-js.git"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/seedrandom": "^3.0.8",
+    "@typescript-eslint/eslint-plugin": "^8.48.0",
+    "@typescript-eslint/parser": "^8.48.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.7.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vitest": "^4.0.14"
+  },
+  "dependencies": {
+    "seedrandom": "^3.0.5"
   }
 }
